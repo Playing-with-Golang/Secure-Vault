@@ -55,11 +55,12 @@ func uploadHandler(c *gin.Context) {
 		S3Key:        s3Key,
 		Token:        token,
 		EncryptionIV: iv,
-		ExpiresAt:    time.Now().Add(time.Duration(expireHours) * time.Hour),
+		ExpiresAt:    time.Now().Add(time.Duration(1) * time.Hour),
 	}
 	db.Create(&meta)
 
 	c.JSON(http.StatusOK, gin.H{
-		"token": token,
+		"token":      token,
+		"expires_at": meta.ExpiresAt.Format(time.RFC3339),
 	})
 }

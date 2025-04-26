@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Secure File Upload</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <script defer src="/static/script.js"></script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 min-h-screen flex flex-col items-center justify-center transition">
+<div id="toast" class="fixed bottom-5 right-5 bg-green-500 text-white px-4 py-2 rounded shadow hidden opacity-0 transition-opacity duration-500"></div>
+<div class="bg-white dark:bg-gray-800 shadow-md rounded p-8 max-w-2xl w-full">
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Secure File Storage</h1>
+        <button id="toggleDark" class="text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white">
+            🌑
+        </button>
+    </div>
+
+    <!-- Drag & Drop Upload -->
+    <div id="dropZone"
+         class="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600 p-8 rounded cursor-pointer hover:border-blue-400 dark:hover:border-blue-500 transition mb-4">
+        <p class="text-gray-500 dark:text-gray-400">Drag & Drop files here<br>or click to select</p>
+        <input type="file" id="fileInput" multiple class="hidden"/>
+    </div>
+
+    <!-- Upload Button -->
+    <button id="uploadBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full mb-6"
+            disabled>Upload Files
+    </button>
+
+    <!-- Upload List -->
+    <div id="uploadList" class="space-y-4"></div>
+
+    <!-- Download Form -->
+    <div class="mt-10">
+        <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Download your file</h2>
+        <form id="downloadForm" class="flex flex-col space-y-4">
+            <input type="text" id="tokenInput" placeholder="Enter your token" required
+                   class="block w-full text-sm text-gray-700 dark:text-gray-300 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded p-2"/>
+            <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 rounded">Download
+                File
+            </button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

@@ -56,7 +56,13 @@ func main() {
 
 	// Gin Server
 	r := gin.Default()
-	r.StaticFile("/", "./ui/index.html")
+	// Serve static files under /static
+	r.Static("/static", "./ui")
+
+	// Serve index.html manually
+	r.GET("/", func(c *gin.Context) {
+		c.File("./ui/index.html")
+	})
 	r.POST("/upload", uploadHandler)
 	r.GET("/download/:token", downloadHandler)
 	r.DELETE("/delete/:token", deleteHandler)

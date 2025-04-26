@@ -16,7 +16,7 @@ func downloadHandler(c *gin.Context) {
 	token := c.Param("token")
 
 	var meta models.FileMeta
-	result := db.First(&meta, "token = ?", token)
+	result := db.First(&meta, "token = ? AND expires_at > ? ", token, time.Now())
 	if result.Error != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Invalid token"})
 		return
